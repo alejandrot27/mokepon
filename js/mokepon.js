@@ -3,7 +3,7 @@ const sectionOcultar = document.getElementById('Seleccionar-Ataque')
 const botonMascota = document.getElementById('boton-mascota')
 const reiniciarJuego = document.getElementById('reinicio')
 
-
+sectionOcultarReinicio.style.display = 'none'
 const sectionOcultarSeleccion = document.getElementById('Seleccionar-Mascota')
 
 const spanJugador = document.getElementById('mascota-jugador')
@@ -29,6 +29,7 @@ let inputPezcom
 let inputTortucle 
 let inputLavaQua 
 let inputDraconux 
+// let inputPrueba
 let mascotaJugador
 let ataquesMokepom
 let botonFuego
@@ -57,76 +58,86 @@ class Mokepom{
 
 }
 
-let tortugom = new Mokepom('Tortugom',"./assets/57910997dd0895a56e8b4575.webp",5)
-let fueguitom = new Mokepom('Fueguitom',"./assets/mokepons_mokepon_ratigueya_attack.png",5)
+let tortugom = new Mokepom('Tortugom','./assets/57910997dd0895a56e8b4575.webp',5)
+let fueguitom = new Mokepom('Fueguitom','./assets/mokepons_mokepon_ratigueya_attack.png',5)
 let pezcom = new Mokepom('Pezcom','./assets/mokepons_mokepon_hipodoge_attack.png',5)
 let tortucle = new Mokepom('Tortucle','./assets/mokepons_mokepon_capipepo_attack.png',5)
-let lavaQua = new Mokepom('LavaQua','./assets/237-2378142_starter-pokmon-pokemones-creados-por-fans.png',5)
-let draconux = new Mokepom('Draconux','s./assets/pokemon-fuecoco.webp',5)
+let lavaqua = new Mokepom('LavaQua','./assets/237-2378142_starter-pokmon-pokemones-creados-por-fans.png',5)
+let draconux = new Mokepom('Draconux','./assets/pokemon-fuecoco.webp',5)
+// let prueba = new Mokepom('Prueba','./assets/draconux.jpg',5)
 
     tortugom.ataques.push(
 
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
-        {nombre:'fuego',id:'fuego'},
-        {nombre:'tierra',id:'tierra'}
+        {nombre:'Fuego',id:'fuego'},
+        {nombre:'Tierra',id:'tierra'},
     )
     fueguitom.ataques.push(
 
         {nombre:'Fuego',id:'fuego'},
         {nombre:'Fuego',id:'fuego'},
         {nombre:'Fuego',id:'fuego'},
-        {nombre:'tierra',id:'tierra'},
-        {nombre:'agua',id:'agua'}
+        {nombre:'Tierra',id:'tierra'},
+        {nombre:'Agua',id:'agua'},
     )
     tortucle.ataques.push(
 
         {nombre:'Tierra',id:'tierra'},
         {nombre:'Tierra',id:'tierra'},
         {nombre:'Tierra',id:'tierra'},
-        {nombre:'fuego',id:'fuego'},
-        {nombre:'agua',id:'agua'}
+        {nombre:'Fuego',id:'fuego'},
+        {nombre:'Agua',id:'agua'},
     )    
-    lavaQua.ataques.push(
+    lavaqua.ataques.push(
 
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
-        {nombre:'tierra',id:'tierra'},
-        {nombre:'fuego',id:'fuego'}
+        {nombre:'Tierra',id:'tierra'},
+        {nombre:'Fuego',id:'fuego'},
     )
     draconux.ataques.push(
 
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
-        {nombre:'fuego',id:'fuego'},
-        {nombre:'tierra',id:'tierra'}
+        {nombre:'Fuego',id:'fuego'},
+        {nombre:'Tierra',id:'tierra'},
     )
-    pezcom.ataques.push(
+     pezcom.ataques.push(
 
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
         {nombre:'Agua',id:'agua'},
-        {nombre:'tierra',id:'tierra'},
-        {nombre:'fuego',id:'fuego'}
+        {nombre:'Tierra',id:'tierra'},
+        {nombre:'Agua',id:'agua'},
     )
+    // prueba.ataques.push(
+    //     {nombre:'Agua',id:'agua'},
+    //     {nombre:'Agua',id:'agua'},
+    //     {nombre:'Agua',id:'agua'},
+    //     {nombre:'Fuego',id:'fuego'},
+    //     {nombre:'Tierra',id:'tierra'},
+    // )
 
-        mokepones.push(tortugom,fueguitom,tortucle,lavaQua,draconux,pezcom)
+        mokepones.push(tortugom,fueguitom,tortucle,lavaqua,draconux,pezcom)
 
 function iniciarJuego(){
 
     
-    sectionOcultarReinicio.style.display = 'none'
+    
     
     mokepones.forEach((mokepon)=>{
-        opcionDemokepones =`
-        <label class="seleccionMokepom" for="${mokepon.nombre}>${mokepon.nombre}
-                    <img src=${mokepon.foto} alt=${mokepon.nombre}>
+        opcionDemokepones = `
+        <input type="radio" name="mokepons" id=${mokepon.nombre} />
+
+        <label class="seleccionMokepom" for=${mokepon.nombre}>
+                <p>${mokepon.nombre}</p>
+                <img src=${mokepon.foto} alt=${mokepon.nombre}>
                     
-                </label>
-                <input type="radio" name="mokepons" id=${mokepon.nombre}> 
+                </label>        
         `
      inputTortugom = document.getElementById('Tortugom')
      inputFueguitom = document.getElementById('Fueguitom')
@@ -134,13 +145,10 @@ function iniciarJuego(){
      inputTortucle = document.getElementById('Tortucle')
      inputLavaQua = document.getElementById('LavaQua')
      inputDraconux = document.getElementById('Draconux')
-
-
+    //  inputPrueba = document.getElementById('Prueba')
 
         contenedorTarjetas.innerHTML += opcionDemokepones
-
-     
-
+    
     })
 
     sectionOcultar.style.display = 'none'
@@ -159,7 +167,7 @@ function seleccionarMascota(){
         mascotaJugador = inputTortugom.id
         
     
-    }else if(inputFueguitom.checked)  {
+    }else if(inputFueguitom.checked){
         spanJugador.innerHTML =  inputFueguitom.id
         mascotaJugador = inputFueguitom.id
        
@@ -181,7 +189,12 @@ function seleccionarMascota(){
     }else if(inputDraconux.checked){
         spanJugador.innerHTML =  inputDraconux.id
         mascotaJugador = inputDraconux.id
+
     
+
+     }else if(inputPrueba.checked){
+         spanJugador.innerHTML = inputPrueba.id
+         mascotaJugador =inputPrueba.id
 
     }else{
 
@@ -253,7 +266,7 @@ function ataqueRivalAleatorio(){
 
     if(ataqueAleatorio == 0 || ataqueAleatorio == 1 ){
         
-        ataqueRival.push('Fuego')
+        ataqueRival.push('FUEGO')
 
     }else if(ataqueAleatorio == 3 || ataqueAleatorio == 4){
 
@@ -287,8 +300,6 @@ function ataqueRivalAleatorio(){
     Jugador.appendChild(parrafoJugador)
     Rival.appendChild(parrafoRival)
 
-    // let parrafo = document.createElement("p")
-    // parrafo.innerHTML = "Tu mascota ataco con:  "+ataqueJugador+", la mascota de tu enemigo ataco con: "+ataqueRival+ " ->"+ resultado 
     
 }
     function crearMensajeFinal(resultadoFinal){
